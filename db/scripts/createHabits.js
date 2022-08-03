@@ -23,7 +23,7 @@ async function checkFreqOps() {
 		const res = await query(query, typeOptions);
 		console.log(`${res.command}: created type freq_options`);
 	} else {
-		console.log("Type freq_options already exists");
+		console.log("data type freq_options already exists");
 	}
 }
 
@@ -40,7 +40,7 @@ async function createHabitsTable() {
         date_created TIMESTAMPTZ
 );`;
 	const res = await query(SQL);
-	console.log(res.command, ": habits table");
+	console.log(`${res.command} : habits table created`);
 }
 
 // async () => {
@@ -48,5 +48,7 @@ async function createHabitsTable() {
 // 	await createHabitsTable();
 // };
 
+console.log("checking whether data type freq_options exists...");
 await checkFreqOps();
+console.log("creating habits table...");
 await createHabitsTable();
