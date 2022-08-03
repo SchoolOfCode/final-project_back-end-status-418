@@ -10,7 +10,11 @@
 		"dbCreateHabits": "node ./db/scripts/createHabits.js",
 		"dbDeleteHabits": "node ./db/scripts/deleteHabits.js",
 		"dbPopulateHabits": "node ./db/scripts/populateHabits.js",
-		"dbResetHabits": "node ./db/scripts/deleteHabits.js && node ./db/scripts/createHabits.js && node ./db/scripts/populateHabits.js"
+		"dbResetHabits": "node ./db/scripts/deleteHabits.js && node ./db/scripts/createHabits.js && node ./db/scripts/populateHabits.js",
+		"dbCreateCalendar": "node ./db/scripts/createCalendar.js",
+		"dbDeleteCalendar": "node ./db/scripts/deleteCalendar.js",
+		"dbPopulateCalendar": "node ./db/scripts/populateCalendar.js",
+		"dbResetCalendar": "node ./db/scripts/deleteCalendar.js && node ./db/scripts/createCalendar.js && node ./db/scripts/populateCalendar.js"
 	},
 	"repository": {
 		"type": "git",
