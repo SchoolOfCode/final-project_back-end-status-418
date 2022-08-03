@@ -19,7 +19,7 @@ async function checkFreqOps() {
 		).typname === "freq_options";
 
 	if (!exists) {
-		const query = "CREATE TYPE FREQ_OPTIONS as ENUM ('$1', '$2', '$3');";
+		const query = "CREATE TYPE FREQ_OPTIONS as ENUM ($1, $2, $3);";
 		const res = await query(query, typeOptions);
 		console.log(`${res.command}: created type freq_options`);
 	} else {
