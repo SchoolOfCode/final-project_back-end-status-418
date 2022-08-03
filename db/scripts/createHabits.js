@@ -18,9 +18,10 @@ async function checkFreqOps() {
 			)
 		).typname === "freq_options";
 
+	// TODO: 'exists' is currently always 'true', as the db never deletes the custom data type, even when the table is dropped. I don't think the CREATE TYPE using paramterized values actually works. So, if the FREQ_OPTIONS type is ever manually dropped, it will need to be re-created, probably just hardcoding the ENUM values rather than via parameters. Leaving the code here in case I eventually figure out a solution.
 	if (!exists) {
-		const query = "CREATE TYPE FREQ_OPTIONS as ENUM ($1, $2, $3);";
-		const res = await query(query, typeOptions);
+		const qry = "CREATE TYPE FREQ_OPTIONS as ENUM ($1, $2, $3);";
+		const res = await query(qry, typeOptions);
 		console.log(`${res.command}: created type freq_options`);
 	} else {
 		console.log("data type freq_options already exists");
