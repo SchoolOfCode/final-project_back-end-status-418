@@ -1,6 +1,6 @@
 //fr_quantity ?? fr_count?? fr_period ?? fr_reps
 
-const habits = [
+export const habits = [
 	{
 		name: "Walk the dog",
 		description: "Every day after work I'll grab the dog's leash",
