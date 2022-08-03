@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"name": "final-project_back-end-status-418",
 	"version": "1.0.0",
 	"description": "Team Status 418: Our SOC final project, Rootine, is a habit-tracking app that we're developing in React. This is the back-end API that links the Rootine front end to the database, which stores information about the users of the app, their habits, and the habit tracking component(calendar).",
@@ -30,4 +31,38 @@
 		"nodemon": "^2.0.19",
 		"supertest": "^6.2.4"
 	}
+=======
+  "name": "final-project_back-end-status-418",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node -r dotenv/config app.js",
+    "dev": "nodemon -r dotenv/config app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchoolOfCode/final-project_back-end-status-418.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SchoolOfCode/final-project_back-end-status-418/issues"
+  },
+  "homepage": "https://github.com/SchoolOfCode/final-project_back-end-status-418#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "helmet": "^5.1.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.19"
+  }
+>>>>>>> 973ad3969135ba2bcd595c69aefd7e91d30c65d4
 }
