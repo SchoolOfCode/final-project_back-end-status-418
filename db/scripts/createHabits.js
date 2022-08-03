@@ -48,5 +48,5 @@ async function createHabitsTable() {
 // 	await createHabitsTable();
 // };
 
-checkFreqOps();
-createHabitsTable();
+await checkFreqOps();
+await createHabitsTable();
