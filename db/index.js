@@ -1,4 +1,5 @@
 import pg from "pg";
+import "dotenv/config";
 
 const connectionString = process.env.PG_URL;
 const poolConfig = {
