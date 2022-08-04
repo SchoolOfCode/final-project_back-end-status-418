@@ -1,6 +1,6 @@
 import { query } from "../db/index.js";
 
-export async function getAllByIDAndDate(id) {
+export async function getAllByID(id) {
   const res = await query(
     `SELECT * FROM calendar INNER JOIN habits
     ON calendar.habit_id = habits.id 
@@ -8,6 +8,15 @@ export async function getAllByIDAndDate(id) {
     [id]
   );
   return res.rows;
+}
+
+export async function newCalendarEntry(habitItem) {
+  const { habit_id, date, status } = habitItem;
+  const res = await query(
+    `INSERT INTO calendar(habit_id, date, status) VALUES ($1, $2, $3) RETURNING *`,
+    [habit_id, date, status]
+  );
+  return res.rows[0];
 }
 
 // date_updated to evenutally change when status is changed
