@@ -38,7 +38,7 @@ async function createHabitsTable() {
         everyday BOOLEAN,
         frequency_reps SMALLINT,
         frequency_interval FREQ_OPTIONS,
-        date_created TIMESTAMPTZ
+        date_created TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );`;
 	const res = await query(SQL);
 	console.log(`${res.command} : habits table created`);
