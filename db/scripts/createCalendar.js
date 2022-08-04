@@ -3,11 +3,13 @@ import { query } from "../index.js";
 async function createCalendarTable() {
   const SQL = `CREATE TABLE IF NOT EXISTS 
     calendar(
-        id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
-        habit_id INT,
-        date TEXT,
+        habit_id INT NOT NULL,
+		FOREIGN KEY(habit_id)
+		REFERENCES habits(id),
+        date TEXT NOT NULL,
         date_created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-        status STATUS_OPTIONS
+        status STATUS_OPTIONS,
+		PRIMARY KEY (habit_id, date)
 );`;
   const res = await query(SQL);
   console.log(`${res.command} : calendar table created`);
