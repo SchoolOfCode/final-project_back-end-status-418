@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 //prettier-ignore
-import { getAllHabits, getHabitById, getHabitsByUserId, addNewHabit, deleteHabit } from "../models/habits.js";
+import { getAllHabits, getHabitById, getHabitsByUserId, addNewHabit, deleteHabit, fullUpdateofHabit } from "../models/habits.js";
 
 import convertHabitData from "../functions/convertHabitData.js";
 
@@ -57,7 +57,7 @@ router.get("/:id", async (req, res) => {
 // 📩 POST
 // Add entire habit (must be received as body of request, in correct format)
 
-// TODO: Check that body of the request is in the correct format and return an error message if not
+// TODO: Check that body of the request is in the correct format and if not, return an error message
 
 router.post("/", async (req, res) => {
 	const result = await addNewHabit(req.body);
@@ -70,6 +70,25 @@ router.post("/", async (req, res) => {
 
 	return res.status(201).json(payload);
 });
+
+// ♻ PUT
+// Full update of specific habit (name, description and userId)
+// TODO: Check that body of the request is in the correct format and if not, return an error message
+
+router.put("/:id", async (req, res) => {
+	const result = await fullUpdateofHabit(Number(req.params.id), req.body);
+	const convertedData = convertHabitData(result);
+	console.log(convertedData);
+	const payload = {
+		success: true,
+		message: `Update habit id ${convertedData[0].id}`,
+		data: convertedData,
+	};
+	return res.json(payload);
+});
+
+// 😷 PATCH
+// Update just one value of a specific habit
 
 // ❌ DELETE
 // Delete a habit by its id
