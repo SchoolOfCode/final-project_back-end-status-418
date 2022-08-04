@@ -1,3 +1,5 @@
+/** Converts the database data to the backend object structure (i.e. with frequency_reps and frequency_interval nested as an object under the key 'frequency').
+ * Expects an array as input. */
 export default function convertHabitData(dataFromSqlQuery) {
 	let convertedData = [];
 	dataFromSqlQuery.map((h, index) => {
