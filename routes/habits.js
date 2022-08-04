@@ -2,10 +2,12 @@ import express from "express";
 const router = express.Router();
 
 //prettier-ignore
-import { getAllHabits, getHabitById, getHabitsByUserId } from "../models/habits.js";
+import { getAllHabits, getHabitById, getHabitsByUserId, addNewHabit } from "../models/habits.js";
+
 import convertHabitData from "../functions/convertHabitData.js";
 
-//Get all habits - includes search query for userId
+// 🌍 GET
+// all habits - includes search query for userId
 router.get("/", async (req, res) => {
 	// Get all habits by userId – via search query
 	if (req.query.userId !== undefined) {
@@ -32,6 +34,7 @@ router.get("/", async (req, res) => {
 	return res.json(payload);
 });
 
+// 🌍 GET
 //Get by habit id
 router.get("/:id", async (req, res) => {
 	const result = await getHabitById(Number(req.params.id));
@@ -49,6 +52,24 @@ router.get("/:id", async (req, res) => {
 	} else {
 		return res.json(payload);
 	}
+});
+
+// 📩 POST
+// Add entire habit (must be received as body of request, in correct format)
+
+// TODO: Check that body of the request is in the correct format and return an error message if not
+//TODO: create the addNewHabit model
+
+router.post("/", async (req, res) => {
+	const result = await addNewHabit(req.body);
+	const convertedData = convertHabitData(result);
+	const payload = {
+		success: true,
+		message: `Created new habit (${convertedData[0].name}) for user ${convertedData[0].userId}`,
+		data: convertedData,
+	};
+
+	return res.status(201).json(payload);
 });
 
 export default router;
