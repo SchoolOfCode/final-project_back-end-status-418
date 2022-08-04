@@ -1,12 +1,15 @@
 import express from "express";
-const router = express.Router();
+const calendarRouter = express.Router();
 
-// to link tables
-// habit_id and date - primary key?
-// date_updated to evenutally change when status is changed
+import { getAllByIDAndDate } from "../models/calendar.js";
 
 // get where habit_id and date is the same
-router.get("/", (res, req) => {});
+calendarRouter.get("/:id", async function (req, res) {
+  res.json({
+    success: true,
+    payload: await getAllByIDAndDate(Number(req.params.id)),
+  });
+});
 
 // update status
 
