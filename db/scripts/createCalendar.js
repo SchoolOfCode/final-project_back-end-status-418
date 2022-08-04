@@ -18,7 +18,8 @@ STATUS_OPTIONS is a custom data type for complete/skip/miss/incomplete */
 
 async function checkStatusOps() {
 	//define the frequency_interval options
-	const statusOptions = ["complete", "skip", "miss", "incomplete"];
+	// prettier-ignore
+	const statusOptions = ['complete', 'skip', 'miss', 'incomplete'];
 
 	const sql = `SELECT typname FROM pg_type WHERE typcategory = 'E'`;
 	const res = await query(sql);
@@ -29,6 +30,7 @@ async function checkStatusOps() {
 				([key, value]) => value === "status_options"
 			)
 		).typname === "status_options";
+	console.log(exists);
 
 	if (!exists) {
 		// const qry = "CREATE TYPE STATUS_OPTIONS as ENUM ($1, $2, $3, $4);";
