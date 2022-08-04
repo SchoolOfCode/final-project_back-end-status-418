@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", function (req, res) {
-	res.send("Welcome to Status 418’s Rootine back end");
+  res.send("Welcome to Status 418’s Rootine back end");
 });
 
 // app.use("/users", usersRouter);
@@ -20,9 +20,9 @@ app.get("/", function (req, res) {
 // app.use("/calendar", calendarRouter);
 
 if (process.env.NODE_ENV != "test") {
-	app.listen(PORT, () => {
-		console.log(`Listening on port ${PORT}`);
-	});
+  app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+  });
 }
 
 export default app;
