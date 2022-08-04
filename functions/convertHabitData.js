@@ -5,7 +5,7 @@ export default function convertHabitData(dataFromSqlQuery) {
 			id: h.id,
 			name: h.name,
 			description: h.description,
-			userId: h.userId,
+			userId: h.userid,
 			everyday: h.everyday,
 			frequency: {
 				fr_reps: h.frequency_reps,
