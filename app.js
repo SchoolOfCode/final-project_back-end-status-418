@@ -4,6 +4,7 @@ import helmet from "helmet";
 import logger from "morgan";
 
 import habitsRouter from "./routes/habits.js";
+import calendarRouter from "./routes/calendar.js";
 
 const PORT = 3001;
 const app = express();
@@ -19,7 +20,7 @@ app.get("/", function (req, res) {
 
 // app.use("/users", usersRouter);
 app.use("/habits", habitsRouter);
-// app.use("/calendar", calendarRouter);
+app.use("/calendar", calendarRouter);
 
 if (process.env.NODE_ENV != "test") {
   app.listen(PORT, () => {
