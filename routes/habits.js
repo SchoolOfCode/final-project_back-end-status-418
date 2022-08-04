@@ -1,10 +1,24 @@
 import express from "express";
 const router = express.Router();
 
-import { getAllHabits, getHabitById } from "../models/habits.js";
+//prettier-ignore
+import { getAllHabits, getHabitById, getHabitsByUserId } from "../models/habits.js";
 
 //Get all habits - includes search query for userId
 router.get("/", async (req, res) => {
+	// Get all habits by userId – via search query
+	if (req.query.userId !== undefined) {
+		console.log(req.query.userId);
+		const result = await getHabitsByUserId(req.query.userId);
+		console.log(result);
+		const payload = {
+			success: true,
+			message: `Data for userId = ${req.query.userId}`,
+			data: result,
+		};
+		return res.json(payload);
+	}
+
 	const result = await getAllHabits();
 	const payload = {
 		success: true,

@@ -11,3 +11,8 @@ export async function getHabitById(id) {
 	const res = await query("SELECT * FROM habits WHERE habits.id = $1;", [id]);
 	return res.rows;
 }
+
+export async function getHabitsByUserId(user) {
+	const res = await query("SELECT * FROM habits WHERE userId = $1", [user]);
+	return res.rows;
+}
