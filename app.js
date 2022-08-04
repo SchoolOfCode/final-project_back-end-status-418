@@ -3,6 +3,8 @@ import cors from "cors";
 import helmet from "helmet";
 import logger from "morgan";
 
+import habitsRouter from "./routes/habits.js";
+
 const PORT = 3001;
 const app = express();
 
@@ -16,7 +18,7 @@ app.get("/", function (req, res) {
 });
 
 // app.use("/users", usersRouter);
-// app.use("/habits", habitsRouter);
+app.use("/habits", habitsRouter);
 // app.use("/calendar", calendarRouter);
 
 if (process.env.NODE_ENV != "test") {
