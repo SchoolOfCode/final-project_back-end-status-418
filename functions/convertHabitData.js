@@ -9,7 +9,7 @@ export default function convertHabitData(dataFromSqlQuery) {
 			everyday: h.everyday,
 			frequency: {
 				fr_reps: h.frequency_reps,
-				fr_interval: h.frequency_reps,
+				fr_interval: h.frequency_interval,
 			},
 		};
 	});
