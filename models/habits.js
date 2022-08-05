@@ -6,12 +6,13 @@ export async function getAllHabits() {
 	return res.rows;
 }
 
-/** Return habit by its id */
+/** Return habit by its id. Expects a number */
 export async function getHabitById(id) {
 	const res = await query("SELECT * FROM habits WHERE habits.id = $1;", [id]);
 	return res.rows;
 }
 
+/** Return all habits by userId. Expects a string */
 export async function getHabitsByUserId(user) {
 	const res = await query("SELECT * FROM habits WHERE userId = $1", [user]);
 	return res.rows;
@@ -24,9 +25,17 @@ export async function getHabitsByUserId(user) {
 // have been ❌HARD-CODED❌
 // This is MVP behaviour
 // Will need to be updated when additional functionality is added
+/** Create an entire new habit. Expects data of the format {name: string, description: string, userId: string} */
 export async function addNewHabit(h) {
 	const sql = `INSERT INTO habits (name, description, userId, everyday, frequency_reps, frequency_interval) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
 	const values = [h.name, h.description, h.userId, true, null, null];
 	const res = await query(sql, values);
+	return res.rows;
+}
+
+export async function deleteHabit(id) {
+	const sql = `DELETE FROM habits WHERE id = $1 RETURNING *;`;
+	const res = await query(sql, [id]);
+	console.log(res.rows);
 	return res.rows;
 }

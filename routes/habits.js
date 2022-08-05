@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 //prettier-ignore
-import { getAllHabits, getHabitById, getHabitsByUserId, addNewHabit } from "../models/habits.js";
+import { getAllHabits, getHabitById, getHabitsByUserId, addNewHabit, deleteHabit } from "../models/habits.js";
 
 import convertHabitData from "../functions/convertHabitData.js";
 
@@ -58,7 +58,6 @@ router.get("/:id", async (req, res) => {
 // Add entire habit (must be received as body of request, in correct format)
 
 // TODO: Check that body of the request is in the correct format and return an error message if not
-//TODO: create the addNewHabit model
 
 router.post("/", async (req, res) => {
 	const result = await addNewHabit(req.body);
@@ -70,6 +69,19 @@ router.post("/", async (req, res) => {
 	};
 
 	return res.status(201).json(payload);
+});
+
+// ❌ DELETE
+// Delete a habit by its id
+router.delete("/:id", async (req, res) => {
+	const result = await deleteHabit(Number(req.params.id));
+	const convertedData = convertHabitData(result);
+	const payload = {
+		success: true,
+		message: `Successfully deleted habit with id ${req.params.id}`,
+		data: convertedData,
+	};
+	return res.status(200).json(payload);
 });
 
 export default router;
