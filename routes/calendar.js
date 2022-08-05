@@ -33,15 +33,23 @@ calendarRouter.get("/:id", async function (req, res) {
 
 // update status
 calendarRouter.patch("/:id", async function (req, res) {
-  res.json({
-    success: true,
-    payload: await changeStatus(Number(req.params.id), req.body),
-  });
+  try {
+    res.json({
+      success: true,
+      payload: await changeStatus(Number(req.params.id), req.body.status),
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 // post new calendar entry
 calendarRouter.post("/", async function (req, res) {
-  res.json({ sucess: true, payload: await newCalendarEntry(req.body) });
+  try {
+    res.json({ sucess: true, payload: await newCalendarEntry(req.body) });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 export default calendarRouter;

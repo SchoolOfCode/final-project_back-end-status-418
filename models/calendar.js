@@ -22,10 +22,10 @@ export async function getAllByIDAndDate(id, date) {
 
 export async function changeStatus(id, newStatus) {
   const res = await query(
-    `ALTER TYPE status_options RENAME VALUE 'complete' TO 'skip' WHERE habit_id = $3`,
+    `UPDATE calendar SET status = $1 WHERE habit_id = $2 RETURNING *`,
     [newStatus, id]
   );
-  return res.rows[0];
+  return res.rows;
 }
 
 export async function newCalendarEntry(habitItem) {
