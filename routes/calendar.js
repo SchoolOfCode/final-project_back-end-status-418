@@ -7,35 +7,27 @@ import {
   newCalendarEntry,
 } from "../models/calendar.js";
 
-// get all habits with a particular habit_id
-calendarRouter.get("/:id", async function (req, res) {
-  try {
-    res.status(200).json({
-      success: true,
-      payload: await getAllByID(Number(req.params.id)),
-    });
-  } catch (e) {
-    console.log(e);
-    res.status(404).send({
-      sucess: false,
-      message: "Please enter correct id number",
-    });
-  }
-});
-
 // get habit by id and date
-calendarRouter.get("/:id/:date", async function (req, res) {
+calendarRouter.get("/:id", async function (req, res) {
   //   let list = await getAllByID(Number(req.params.id));
   //   let selectedDate = list.filter(
-  //     (item) => item.date === String(req.params.date)
+  //     (item) => String(item.date) === String(req.query.date)
   //   );
-  //   console.log(req.params);
-  //   console.log(selectedDate);
   try {
-    res.json({
-      success: true,
-      payload: await getAllByIDAndDate(Number(req.params.id), req.params.date),
-    });
+    if (req.query.date) {
+      res.json({
+        success: true,
+        payload: await getAllByIDAndDate(
+          Number(req.params.id),
+          String(req.query.date)
+        ),
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        payload: await getAllByID(Number(req.params.id)),
+      });
+    }
   } catch (e) {
     res.status(500).send();
   }
