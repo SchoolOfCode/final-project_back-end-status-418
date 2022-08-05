@@ -20,6 +20,10 @@ export async function getAllByIDAndDate(id, date) {
   return res.rows[0];
 }
 
+export async function changeStatus(id, date) {
+  const res = await query(`UPDATE calendar `);
+}
+
 export async function newCalendarEntry(habitItem) {
   const { habit_id, date, status } = habitItem;
   const res = await query(

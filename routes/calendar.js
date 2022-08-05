@@ -17,18 +17,15 @@ calendarRouter.get("/:id", async function (req, res) {
     if (req.query.date) {
       res.json({
         success: true,
-        payload: await getAllByIDAndDate(
-          Number(req.params.id),
-          String(req.query.date)
-        ),
-      });
-    } else {
-      res.status(200).json({
-        success: true,
-        payload: await getAllByID(Number(req.params.id)),
+        payload: await getAllByIDAndDate(Number(req.params.id), req.query.date),
       });
     }
+    res.status(200).json({
+      success: true,
+      payload: await getAllByID(Number(req.params.id)),
+    });
   } catch (e) {
+    console.log(e);
     res.status(500).send();
   }
 });
