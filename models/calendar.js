@@ -20,8 +20,12 @@ export async function getAllByIDAndDate(id, date) {
   return res.rows[0];
 }
 
-export async function changeStatus(id, date) {
-  const res = await query(`UPDATE calendar `);
+export async function changeStatus(id, newStatus) {
+  const res = await query(
+    `ALTER TYPE status_options RENAME VALUE 'complete' TO 'skip' WHERE habit_id = $3`,
+    [newStatus, id]
+  );
+  return res.rows[0];
 }
 
 export async function newCalendarEntry(habitItem) {
