@@ -22,7 +22,7 @@ export async function getAllByIDAndDate(id, date) {
 
 export async function changeStatus(id, newStatus) {
   const res = await query(
-    `UPDATE calendar SET status = $1 WHERE habit_id = $2 RETURNING *`,
+    `UPDATE calendar SET status = $1, updated_at = NOW() WHERE habit_id = $2 RETURNING *`,
     [newStatus, id]
   );
   return res.rows;

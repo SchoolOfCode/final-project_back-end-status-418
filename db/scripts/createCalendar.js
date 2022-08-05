@@ -7,7 +7,8 @@ async function createCalendarTable() {
 		FOREIGN KEY(habit_id)
 		REFERENCES habits(id),
         date TEXT NOT NULL,
-        date_created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+		updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         status STATUS_OPTIONS,
 		PRIMARY KEY (habit_id, date)
 );`;
