@@ -33,6 +33,14 @@ export async function addNewHabit(h) {
 	return res.rows;
 }
 
+/** Update a habit. Expects data of the format {name: string, description: string, userId: string} */
+export async function fullUpdateofHabit(id, h) {
+	const sql = `UPDATE habits SET name = $1, description = $2, userid = $3 WHERE id = $4 RETURNING *;`;
+	const values = [h.name, h.description, h.userId, id];
+	const res = await query(sql, values);
+	return res.rows;
+}
+
 export async function deleteHabit(id) {
 	const sql = `DELETE FROM habits WHERE id = $1 RETURNING *;`;
 	const res = await query(sql, [id]);
