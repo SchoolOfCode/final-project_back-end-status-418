@@ -18,6 +18,7 @@ calendarRouter.get("/:id", async (req, res) => {
         success: true,
         payload: await getAllByIDAndDate(Number(req.params.id), req.query.date),
       });
+      return;
     }
     res.status(200).json({
       success: true,
@@ -25,7 +26,7 @@ calendarRouter.get("/:id", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ success: false });
+    res.status(500).send({ success: false, message: "Server Unavailable" });
   }
 });
 
@@ -65,6 +66,7 @@ calendarRouter.delete("/:id", async (req, res) => {
           req.query.date
         ),
       });
+      return;
     }
     res.status(200).json({
       success: true,
@@ -72,7 +74,7 @@ calendarRouter.delete("/:id", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ success: false });
+    res.status(500).send({ success: false, message: "Server Unavailable" });
   }
 });
 
