@@ -39,7 +39,7 @@ async function createHabitsTable() {
         frequency_reps SMALLINT,
         frequency_interval FREQ_OPTIONS,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-		updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );`;
   const res = await query(SQL);
   console.log(`${res.command} : habits table created`);
