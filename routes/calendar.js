@@ -14,7 +14,7 @@ import {
 calendarRouter.get("/:id", async (req, res) => {
   try {
     if (req.query.date) {
-      res.json({
+      res.status(200).json({
         success: true,
         payload: await getAllByIDAndDate(Number(req.params.id), req.query.date),
       });
@@ -32,7 +32,7 @@ calendarRouter.get("/:id", async (req, res) => {
 // update status
 calendarRouter.patch("/:id", async (req, res) => {
   try {
-    res.json({
+    res.status(202).json({
       success: true,
       payload: await changeStatus(Number(req.params.id), req.body.status),
     });
@@ -44,7 +44,9 @@ calendarRouter.patch("/:id", async (req, res) => {
 // post new calendar entry
 calendarRouter.post("/", async (req, res) => {
   try {
-    res.json({ success: true, payload: await newCalendarEntry(req.body) });
+    res
+      .status(202)
+      .json({ success: true, payload: await newCalendarEntry(req.body) });
   } catch (err) {
     console.log(err);
   }
@@ -54,7 +56,7 @@ calendarRouter.post("/", async (req, res) => {
 calendarRouter.delete("/:id", async (req, res) => {
   try {
     if (req.query.date) {
-      res.json({
+      res.status(200).json({
         success: true,
         payload: await deleteCalendarEntry(
           Number(req.params.id),
@@ -62,7 +64,7 @@ calendarRouter.delete("/:id", async (req, res) => {
         ),
       });
     }
-    res.json({
+    res.status(200).json({
       success: true,
       payload: await deleteAllCalendarEntriesByID(Number(req.params.id)),
     });
