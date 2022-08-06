@@ -11,7 +11,7 @@ import {
 } from "../models/calendar.js";
 
 // get habit by id and date
-calendarRouter.get("/:id", async function (req, res) {
+calendarRouter.get("/:id", async (req, res) => {
   try {
     if (req.query.date) {
       res.json({
@@ -30,7 +30,7 @@ calendarRouter.get("/:id", async function (req, res) {
 });
 
 // update status
-calendarRouter.patch("/:id", async function (req, res) {
+calendarRouter.patch("/:id", async (req, res) => {
   try {
     res.json({
       success: true,
@@ -42,7 +42,7 @@ calendarRouter.patch("/:id", async function (req, res) {
 });
 
 // post new calendar entry
-calendarRouter.post("/", async function (req, res) {
+calendarRouter.post("/", async (req, res) => {
   try {
     res.json({ success: true, payload: await newCalendarEntry(req.body) });
   } catch (err) {
@@ -51,7 +51,7 @@ calendarRouter.post("/", async function (req, res) {
 });
 
 // delete
-calendarRouter.delete("/:id", async function (req, res) {
+calendarRouter.delete("/:id", async (req, res) => {
   try {
     if (req.query.date) {
       res.json({
