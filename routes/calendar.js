@@ -25,7 +25,7 @@ calendarRouter.get("/:id", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).send();
+    res.status(500).send({ success: false });
   }
 });
 
@@ -38,6 +38,7 @@ calendarRouter.patch("/:id", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+    res.status(500).send({ success: false });
   }
 });
 
@@ -49,6 +50,7 @@ calendarRouter.post("/", async (req, res) => {
       .json({ success: true, payload: await newCalendarEntry(req.body) });
   } catch (err) {
     console.log(err);
+    res.status(500).send({ success: false });
   }
 });
 
@@ -70,6 +72,7 @@ calendarRouter.delete("/:id", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+    res.status(500).send({ success: false });
   }
 });
 
