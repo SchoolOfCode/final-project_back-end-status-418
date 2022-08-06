@@ -35,7 +35,7 @@ export async function addNewHabit(h) {
 
 /** Update a habit. Expects data of the format {name: string, description: string, userId: string} */
 export async function fullUpdateofHabit(id, h) {
-  const sql = `UPDATE habits SET name = $1, description = $2, userid = $3 WHERE id = $4 RETURNING *;`;
+  const sql = `UPDATE habits SET name = $1, description = $2, userid = $3, updated_at = NOW() WHERE id = $4 RETURNING *;`;
   const values = [h.name, h.description, h.userId, id];
   const res = await query(sql, values);
   return res.rows;
@@ -50,7 +50,7 @@ export async function deleteHabit(id) {
 
 //Update habit name
 export async function updateHabitName(id, name) {
-  const sql = ` UPDATE habits SET name = $1 WHERE id = $2 RETURNING*;`;
+  const sql = ` UPDATE habits SET name = $1, updated_at = NOW() WHERE id = $2 RETURNING*;`;
   const res = await query(sql, [name, id]);
   console.log(res.rows);
   return res.rows;
@@ -59,7 +59,7 @@ export async function updateHabitName(id, name) {
 // Update habit description
 
 export async function updateHabitDescription(id, description) {
-  const sql = ` UPDATE habits SET description = $1 WHERE id = $2 RETURNING*;`;
+  const sql = ` UPDATE habits SET description = $1, updated_at = NOW() WHERE id = $2 RETURNING*;`;
   const res = await query(sql, [description, id]);
   console.log(res.rows);
   return res.rows;
