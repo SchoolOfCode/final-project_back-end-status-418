@@ -31,10 +31,16 @@ export async function changeStatus(id, newStatus) {
 export async function newCalendarEntry(habitItem) {
   const { habit_id, date, status } = habitItem;
   const res = await query(
-    `INSERT INTO calendar(habit_id, date, status) VALUES ($1, $2, $3) RETURNING * ON CONFLICT DO NOTHING`,
+    `INSERT INTO calendar(habit_id, date, status) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING RETURNING *`,
     [habit_id, date, status]
   );
-  return res.rows[0];
+  return res.rows;
 }
 
-// date_updated to evenutally change when status is changed
+export async function deleteCalendarEntry(id, date) {
+  const res = await query(
+    `DELETE FROM calendar WHERE habit_id = $1 AND date = $2`,
+    [id, date]
+  );
+  return res.rows;
+}
