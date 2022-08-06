@@ -31,7 +31,7 @@ export async function changeStatus(id, newStatus) {
 export async function newCalendarEntry(habitItem) {
   const { habit_id, date, status } = habitItem;
   const res = await query(
-    `INSERT INTO calendar(habit_id, date, status) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING RETURNING *`,
+    `INSERT INTO calendar(habit_id, date, status) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING`,
     [habit_id, date, status]
   );
   return res.rows;
