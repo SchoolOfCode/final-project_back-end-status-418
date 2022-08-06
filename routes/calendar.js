@@ -7,6 +7,7 @@ import {
   changeStatus,
   newCalendarEntry,
   deleteCalendarEntry,
+  deleteAllCalendarEntriesByID,
 } from "../models/calendar.js";
 
 // get habit by id and date
@@ -52,9 +53,18 @@ calendarRouter.post("/", async function (req, res) {
 // delete
 calendarRouter.delete("/:id", async function (req, res) {
   try {
+    if (req.query.date) {
+      res.json({
+        success: true,
+        payload: await deleteCalendarEntry(
+          Number(req.params.id),
+          req.query.date
+        ),
+      });
+    }
     res.json({
       success: true,
-      payload: await deleteCalendarEntry(Number(req.params.id), req.query.date),
+      payload: await deleteAllCalendarEntriesByID(Number(req.params.id)),
     });
   } catch (err) {
     console.log(err);

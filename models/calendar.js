@@ -44,3 +44,8 @@ export async function deleteCalendarEntry(id, date) {
   );
   return res.rows;
 }
+
+export async function deleteAllCalendarEntriesByID(id) {
+  const res = await query(`DELETE FROM calendar WHERE habit_id = $1`, [id]);
+  return res.rows;
+}
