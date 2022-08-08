@@ -4,7 +4,7 @@ import { habits } from "./libs/habits.js";
 async function populateHabitsTable() {
   let res;
   for (let i = 0; i < habits.length; i++) {
-    const sql = `INSERT INTO habits (name, description, user_id, everyday, frequency_reps, frequency_interval) VALUES ($1, $2, $3, $4, $5, $6)`;
+    const sql = `INSERT INTO habits (name, description, userId, everyday, frequency_reps, frequency_interval) VALUES ($1, $2, $3, $4, $5, $6)`;
     const data = [
       habits[i].name,
       habits[i].description,

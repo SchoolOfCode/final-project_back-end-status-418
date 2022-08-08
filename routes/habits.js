@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 
     const payload = {
       success: true,
-      message: `Data for userId = ${req.query.userId}`,
+      message: `Data for user_id = ${req.query.userId}`,
       data: convertedData,
     };
     return res.json(payload);
