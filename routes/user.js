@@ -11,19 +11,22 @@ userRouter.get("/:id", async function (req, res) {
       payload: await getUserById(req.params.id),
     });
   } catch (e) {
-    res.status(404).send({
+    res.status(200).send({
       success: false,
       message: "Please enter correct account id number",
     });
   }
 });
 
-// GET all habits using username
+// GET  users using username
 userRouter.get("/", async function (req, res) {
+  const user = String(req.query.username);
+  console.log(user);
   if (req.query.username !== undefined) {
     const result = await getUserByUsername(req.query.username);
     return res.json({ success: true, payload: result });
   }
+  return res.json({ message: "List of users not available" });
 });
 
 export default userRouter;

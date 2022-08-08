@@ -34,7 +34,9 @@ async function createHabitsTable() {
         id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
         name TEXT, 
         description TEXT, 
-        userId TEXT, 
+        user_id INT,
+        FOREIGN KEY (user_id)
+        REFERENCES user(user_id) 
         everyday BOOLEAN,
         frequency_reps SMALLINT,
         frequency_interval FREQ_OPTIONS,
