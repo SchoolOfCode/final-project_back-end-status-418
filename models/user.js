@@ -6,11 +6,8 @@ export async function getUserById(id) {
   return res.rows;
 }
 
-//return all habits using username
-export async function getUserByUsername(username) {
-  const res = await query(
-    `SELECT * FROM users WHERE username LIKE '%' || $1 || '%';`,
-    [username]
-  );
+//return user using username
+export async function getAllUsers() {
+  const res = await query(`SELECT * FROM users ;`);
   return res.rows;
 }
