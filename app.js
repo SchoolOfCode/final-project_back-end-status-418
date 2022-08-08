@@ -6,7 +6,7 @@ import logger from "morgan";
 import habitsRouter from "./routes/habits.js";
 import calendarRouter from "./routes/calendar.js";
 
-const PORT = 3001;
+const port = process.env.PORT || 3001
 const app = express();
 
 app.use(logger("dev"));
@@ -23,8 +23,8 @@ app.use("/habits", habitsRouter);
 app.use("/calendar", calendarRouter);
 
 if (process.env.NODE_ENV != "test") {
-  app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
   });
 }
 
