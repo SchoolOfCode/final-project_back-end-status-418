@@ -1,9 +1,9 @@
 import { query } from "../index.js";
 
 async function deleteUserTable() {
-  const SQL = `DROP TABLE IF EXISTS user`;
-  const res = await query(SQL);
-  console.log(`${res.command} : user table deleted`);
+  const sql = `DROP TABLE users;`;
+  const res = await query(sql);
+  console.log(`${res.command}: user table deleted`);
 }
 
 console.log("deleting user table...");

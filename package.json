@@ -16,6 +16,9 @@
     "dbDeleteCalendar": "node ./db/scripts/deleteCalendar.js",
     "dbPopulateCalendar": "node ./db/scripts/populateCalendar.js",
     "dbResetCalendar": "node ./db/scripts/deleteCalendar.js && node ./db/scripts/createCalendar.js && node ./db/scripts/populateCalendar.js",
+    "dbCreateUser": "node ./db/scripts/createUser.js",
+    "dbDeleteUser": "node ./db/scripts/deleteUser.js",
+    "dbPopulateUser": "node ./db/scripts/populateUser.js",
     "dbResetUser": "node ./db/scripts/deleteUser.js && node ./db/scripts/createUser.js && node ./db/scripts/populateUser.js"
   },
   "repository": {
