@@ -5,8 +5,9 @@ import logger from "morgan";
 
 import habitsRouter from "./routes/habits.js";
 import calendarRouter from "./routes/calendar.js";
+import userRouter from "./routes/user.js";
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3001;
 const app = express();
 
 app.use(logger("dev"));
@@ -18,7 +19,7 @@ app.get("/", function (req, res) {
   res.send("Welcome to Status 418’s Rootine back end");
 });
 
-// app.use("/users", usersRouter);
+app.use("/user", userRouter);
 app.use("/habits", habitsRouter);
 app.use("/calendar", calendarRouter);
 
