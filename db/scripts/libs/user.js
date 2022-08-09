@@ -3,15 +3,15 @@
 
 export const user = [
   {
-    account_id: 1,
-    username: "Idman.a",
+    user_id: "1",
+    username: "Idman123",
   },
   {
-    account_id: 2,
-    username: "Idman.b",
+    user_id: "2",
+    username: "Idman567",
   },
   {
-    account_id: 2,
-    username: "Idman.c",
+    user_id: "3",
+    username: "Idman234",
   },
 ];

@@ -39,7 +39,7 @@ calendarRouter.patch("/:id", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(400).send({ success: false });
+    res.status(500).send({ success: false, message: "Server Unavailable" });
   }
 });
 
@@ -51,7 +51,7 @@ calendarRouter.post("/", async (req, res) => {
       .json({ success: true, payload: await newCalendarEntry(req.body) });
   } catch (err) {
     console.log(err);
-    res.status(400).send({ success: false });
+    res.status(500).send({ success: false, message: "Server Unavailable" });
   }
 });
 
