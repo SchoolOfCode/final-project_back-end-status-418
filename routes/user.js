@@ -6,6 +6,7 @@ import {
   getAllUsers,
   addNewUser,
   changeUsername,
+  deleteUser,
 } from "../models/user.js";
 
 // GET all users
@@ -42,5 +43,8 @@ userRouter.put("/:id", async (req, res) => {
 });
 
 // delete user
+userRouter.delete("/:id", async (req, res) => {
+  res.json({ success: true, payload: await deleteUser(req.params.id) });
+});
 
 export default userRouter;
