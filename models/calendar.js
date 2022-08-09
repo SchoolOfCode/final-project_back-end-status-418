@@ -2,7 +2,8 @@ import { query } from "../db/index.js";
 
 export async function getAllByID(id) {
   const res = await query(
-    `SELECT * FROM calendar INNER JOIN habits
+    `SELECT calendar.date, calendar.status, habits.name, habits.userid, habits.id 
+    FROM calendar INNER JOIN habits
     ON calendar.habit_id = habits.id 
     WHERE habit_id = $1`,
     [id]
