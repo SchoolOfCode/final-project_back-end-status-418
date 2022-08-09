@@ -5,8 +5,7 @@ import { getUserById, getAllUsers } from "../models/user.js";
 
 // GET all users
 userRouter.get("/", async function (req, res) {
-  const result = await getAllUsers(req.query.username);
-  return res.json({ success: true, payload: result });
+  return res.json({ success: true, payload: await getAllUsers() });
 });
 
 //GET specific users using the user_id
