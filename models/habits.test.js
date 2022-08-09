@@ -15,21 +15,21 @@ test("Testing that the habits table is an object within an array", function () {
   ];
 
   const expected = {
-  success: true,
-  message: "All data on habits table",
-  data: [
-    {
-      name: expect.any(String),
-      description: expect.any(String),
-      userId: expect.any(String),
-      everyday: expect.any(Boolean),
-      frequency: {
-        fr_reps: null,
-        fr_interval: null,
+    success: true,
+    message: "All data on habits table",
+    data: [
+      {
+        name: expect.any(String),
+        description: expect.any(String),
+        userId: expect.any(String),
+        everyday: expect.any(Boolean),
+        frequency: {
+          fr_reps: null,
+          fr_interval: null,
+        },
       },
-    },
-  ];
-}
+    ],
+  };
   expect(actual).toStrictEqual(expected);
 });
 
@@ -319,7 +319,7 @@ test("Testing that when updateHabitName function is called it will change the ha
   };
 });
 
-//testing the uupdateHabitDescription function
+//testing the updateHabitDescription function
 test("Testing that when updateHabitDescription function is called it will change the habits description using the habit id", function () {
   const habitId = 1;
   const description = "Every day before work I'll grab the dog's leash";
