@@ -35,10 +35,10 @@ userRouter.post("/", async (req, res) => {
 });
 
 // update username- to allow users to change username
-userRouter.put("/:id", async (req, res) => {
+userRouter.patch("/:id", async (req, res) => {
   res.json({
     success: true,
-    payload: await changeUsername(req.params.id, req.body.username),
+    payload: await changeUsername(req.body.username, req.params.id),
   });
 });
 
