@@ -1,7 +1,7 @@
 import express from "express";
 const userRouter = express.Router();
 
-import { getUserById, getAllUsers } from "../models/user.js";
+import { getUserById, getAllUsers, addNewUser } from "../models/user.js";
 
 // GET all users
 userRouter.get("/", async function (req, res) {
@@ -22,5 +22,12 @@ userRouter.get("/:id", async function (req, res) {
     });
   }
 });
+
+// post new user ID from Auth0
+userRouter.post("/", async (req, res) => {
+  res.json({ success: true, payload: await addNewUser(req.body) });
+});
+
+// update userID from Auth0
 
 export default userRouter;
