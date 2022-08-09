@@ -21,3 +21,18 @@ export async function addNewUser(newUser) {
   );
   return res.rows;
 }
+
+// change username
+export async function changeUsername(newUsername, id) {
+  const res = await query(
+    `UPDATE users SET username = $1 WHERE user_id = $2 RETURNING *`,
+    [newUsername, id]
+  );
+  return res.rows;
+}
+
+// delete user
+export async function deleteUser(id) {
+  const res = await query(`DELETE FROM users WHERE user_id = $1`, [id]);
+  return res.rows;
+}

@@ -1,7 +1,12 @@
 import express from "express";
 const userRouter = express.Router();
 
-import { getUserById, getAllUsers, addNewUser } from "../models/user.js";
+import {
+  getUserById,
+  getAllUsers,
+  addNewUser,
+  changeUsername,
+} from "../models/user.js";
 
 // GET all users
 userRouter.get("/", async function (req, res) {
@@ -28,6 +33,14 @@ userRouter.post("/", async (req, res) => {
   res.json({ success: true, payload: await addNewUser(req.body) });
 });
 
-// update userID from Auth0
+// update username- to allow users to change username
+userRouter.put("/:id", async (req, res) => {
+  res.json({
+    success: true,
+    payload: await changeUsername(req.params.id, req.body.username),
+  });
+});
+
+// delete user
 
 export default userRouter;
