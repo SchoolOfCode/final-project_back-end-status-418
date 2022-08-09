@@ -27,7 +27,7 @@ export async function getHabitsByUserId(user) {
 // Will need to be updated when additional functionality is added
 /** Create an entire new habit. Expects data of the format (JSON): {"name": string, "description": string, "userId": string} */
 export async function addNewHabit(h) {
-	const sql = `INSERT INTO habits (name, description, userid, everyday, frequency_reps, frequency_interval) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
+	const sql = `INSERT INTO habits (name, description, userId, everyday, frequency_reps, frequency_interval) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
 	const values = [h.name, h.description, h.userId, true, null, null];
 	const res = await query(sql, values);
 	return res.rows;
