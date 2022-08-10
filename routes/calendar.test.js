@@ -126,3 +126,11 @@ describe(`update status from incomplete to either complete, miss or fail`, () =>
     ]);
   });
 });
+
+// delete
+describe(`delete calendar entries`, () => {
+  test(`Delete a calendar entry by date`, async () => {
+    const res = await require(app).delete("/calendar/2?date=20220811");
+    expect(res.statusCode).toBe(200);
+  });
+});
