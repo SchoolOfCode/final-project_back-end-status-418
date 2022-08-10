@@ -19,7 +19,7 @@ export async function getAllByIDAndDate(id, date) {
       WHERE habit_id = $1 AND date = $2`,
     [id, date]
   );
-  return res.rows[0];
+  return res.rows;
 }
 
 export async function changeStatus(id, newStatus) {
