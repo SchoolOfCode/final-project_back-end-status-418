@@ -61,6 +61,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const result = await addNewHabit(req.body);
+  console.log(req.body + "..................................")
   const convertedData = convertHabitData(result);
   const payload = {
     success: true,
