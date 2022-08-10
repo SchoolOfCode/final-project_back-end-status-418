@@ -3,17 +3,6 @@ import require from "supertest";
 import { describe, test, expect } from "@jest/globals";
 import { request } from "express";
 
-// check if response = 200
-// check if response body is { success: true, payload: array }
-// check if every item in payload array is
-// {
-// "date": any string,
-// "status": any string,
-// "name": any string,
-// "userid": any string,
-// "id": any number
-// }
-
 // get habit item by id
 describe(`get habit item by habit_id`, () => {
   test(`getAllByID`, async () => {
@@ -120,5 +109,20 @@ describe(`update status from incomplete to either complete, miss or fail`, () =>
       success: true,
       payload: expect.any(Array),
     });
+  });
+
+  test(`check if every item in the payload array is { id: any number, date: any string, created_at: any string, updated_at: any string, status: any string}`, async () => {
+    const res = await require(app).patch("/calendar/2?date=20220810").send({
+      status: "complete",
+    });
+    expect.arrayContaining([
+      {
+        id: expect.any(Number),
+        date: expect.any(String),
+        created_at: expect.any(String),
+        updated_at: expect.any(String),
+        status: expect.any(String),
+      },
+    ]);
   });
 });
