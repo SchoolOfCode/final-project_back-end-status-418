@@ -50,7 +50,7 @@ describe(`get habit item by habit_id`, () => {
 // get habit item by id and date
 describe(`get habit item by habit_id and date`, () => {
   test(`getAllByIDAndDate`, async () => {
-    const res = await require(app).get("calendar/2?date=20220802");
+    const res = await require(app).get("/calendar/5?date=20220802");
     expect(res.statusCode).toBe(200);
   });
 });
