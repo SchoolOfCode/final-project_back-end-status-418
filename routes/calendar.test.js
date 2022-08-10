@@ -144,6 +144,9 @@ describe(`Delete a calendar entry by date`, () => {
   });
 });
 
-// describe(`delete all calendar entries for a habit`, () => {
-//   test(`delete all calendar entries`, async () => {});
-// });
+describe(`delete all calendar entries for a habit`, () => {
+  test(`delete all calendar entries`, async () => {
+    const res = await require(app).delete("/calendar/2");
+    expect(res.statusCode).toBe(200);
+  });
+});
