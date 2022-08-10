@@ -63,4 +63,19 @@ describe(`get habit item by habit_id and date`, () => {
       payload: expect.any(Array),
     });
   });
+
+  test(`check if every item in the payload array is { date: any string, status: any string, name: any string, userid: any string, id: any number}`, async () => {
+    const res = await require(app).get("/calendar/5?date=20220802");
+    expect(res.body.payload).toEqual(
+      expect.arrayContaining([
+        {
+          date: expect.any(String),
+          id: expect.any(Number),
+          name: expect.any(String),
+          status: expect.any(String),
+          userid: expect.any(String),
+        },
+      ])
+    );
+  });
 });
