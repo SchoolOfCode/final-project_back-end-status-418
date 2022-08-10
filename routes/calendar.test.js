@@ -111,4 +111,14 @@ describe(`update status from incomplete to either complete, miss or fail`, () =>
     });
     expect(res.statusCode).toBe(202);
   });
+
+  test(`checks if response body is {success: true, payload: array)`, async () => {
+    const res = await require(app).patch("/calendar/2?date=20220810").send({
+      status: "complete",
+    });
+    expect(res.body).toEqual({
+      success: true,
+      payload: expect.any(Array),
+    });
+  });
 });
