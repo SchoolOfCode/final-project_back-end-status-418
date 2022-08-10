@@ -53,4 +53,13 @@ describe(`get habit item by habit_id and date`, () => {
     const res = await require(app).get("/calendar/5?date=20220802");
     expect(res.statusCode).toBe(200);
   });
+  test(`checks if response body is {
+    success: true, payload: array
+  }`, async () => {
+    const res = await require(app).get("/calendar/2");
+    expect(res.body).toEqual({
+      success: true,
+      payload: expect.any(Array),
+    });
+  });
 });
