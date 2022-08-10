@@ -47,7 +47,7 @@ calendarRouter.patch("/:id", async (req, res) => {
 calendarRouter.post("/", async (req, res) => {
   try {
     res
-      .status(202)
+      .status(201)
       .json({ success: true, payload: await newCalendarEntry(req.body) });
   } catch (err) {
     console.log(err);
