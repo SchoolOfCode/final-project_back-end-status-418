@@ -90,4 +90,15 @@ describe(`post new calendar entry`, () => {
     });
     expect(res.statusCode).toBe(201);
   });
+
+  test(`checks if the input is of type json`, async () => {
+    const res = await require(app).post("/calendar").send({
+      habit_id: 2,
+      date: "20220809",
+      status: "complete",
+    });
+    expect(res.headers["content-type"]).toEqual(
+      expect.stringContaining("json")
+    );
+  });
 });
