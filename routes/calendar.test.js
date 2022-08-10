@@ -133,4 +133,12 @@ describe(`delete calendar entries`, () => {
     const res = await require(app).delete("/calendar/2?date=20220811");
     expect(res.statusCode).toBe(200);
   });
+
+  test(`checks if response body is {success: true}`, async () => {
+    const res = await require(app).delete("/calendar/2?date=20220811");
+    expect(res.body).toEqual({
+      success: true,
+      payload: expect.any(Array),
+    });
+  });
 });
