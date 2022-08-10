@@ -33,10 +33,17 @@ calendarRouter.get("/:id", async (req, res) => {
 // update status
 calendarRouter.patch("/:id", async (req, res) => {
   try {
-    res.status(202).json({
-      success: true,
-      payload: await changeStatus(Number(req.params.id), req.body.status),
-    });
+    if (req.query.date) {
+      res.status(202).json({
+        success: true,
+        payload: await changeStatus(
+          Number(req.params.id),
+          req.body.status,
+          req.query.date
+        ),
+      });
+      return;
+    }
   } catch (err) {
     console.log(err);
     res.status(500).send({ success: false, message: "Server Unavailable" });

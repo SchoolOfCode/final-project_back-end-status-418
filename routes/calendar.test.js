@@ -102,3 +102,10 @@ describe(`post new calendar entry`, () => {
     );
   });
 });
+
+// patch
+describe(`update status from incomplete to either complete, miss or fail`, () => {
+  test(`updateStatus`, async () => {
+    const res = await require(app).put("/calendar/2");
+  });
+});
