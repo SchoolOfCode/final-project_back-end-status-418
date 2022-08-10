@@ -1,7 +1,6 @@
 import app from "../app.js";
 import require from "supertest";
 import { describe, test, expect } from "@jest/globals";
-import { request } from "express";
 
 // get habit item by id
 describe(`get habit item by habit_id`, () => {
@@ -115,21 +114,23 @@ describe(`update status from incomplete to either complete, miss or fail`, () =>
     const res = await require(app).patch("/calendar/2?date=20220810").send({
       status: "complete",
     });
-    expect.arrayContaining([
-      {
-        id: expect.any(Number),
-        date: expect.any(String),
-        created_at: expect.any(String),
-        updated_at: expect.any(String),
-        status: expect.any(String),
-      },
-    ]);
+    expect(res.body.payload).toEqual(
+      expect.arrayContaining([
+        {
+          created_at: expect.any(String),
+          date: expect.any(String),
+          habit_id: expect.any(Number),
+          status: expect.any(String),
+          updated_at: expect.any(String),
+        },
+      ])
+    );
   });
 });
 
 // delete
-describe(`delete calendar entries`, () => {
-  test(`Delete a calendar entry by date`, async () => {
+describe(`Delete a calendar entry by date`, () => {
+  test(`Delete a calendar entry`, async () => {
     const res = await require(app).delete("/calendar/2?date=20220811");
     expect(res.statusCode).toBe(200);
   });
@@ -142,3 +143,7 @@ describe(`delete calendar entries`, () => {
     });
   });
 });
+
+// describe(`delete all calendar entries for a habit`, () => {
+//   test(`delete all calendar entries`, async () => {});
+// });

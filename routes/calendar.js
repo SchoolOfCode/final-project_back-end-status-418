@@ -26,7 +26,9 @@ calendarRouter.get("/:id", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ success: false, message: "Server Unavailable" });
+    res
+      .status(404)
+      .send({ success: false, message: "ID and/or date not found" });
   }
 });
 
