@@ -106,6 +106,9 @@ describe(`post new calendar entry`, () => {
 // patch
 describe(`update status from incomplete to either complete, miss or fail`, () => {
   test(`updateStatus`, async () => {
-    const res = await require(app).put("/calendar/2");
+    const res = await require(app).patch("/calendar/2?date=20220810").send({
+      status: "complete",
+    });
+    expect(res.statusCode).toBe(202);
   });
 });
