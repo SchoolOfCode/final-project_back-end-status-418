@@ -79,3 +79,15 @@ describe(`get habit item by habit_id and date`, () => {
     );
   });
 });
+
+// post new calendar entry
+describe(`post new calendar entry`, () => {
+  test(`Add habit_id, date and status to database`, async () => {
+    const res = await require(app).post("/calendar").send({
+      habit_id: 2,
+      date: "20220809",
+      status: "complete",
+    });
+    expect(res.statusCode).toBe(201);
+  });
+});
