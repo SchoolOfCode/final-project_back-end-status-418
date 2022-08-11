@@ -134,17 +134,6 @@ test(`Sending a new habit name for a specific id to patch route, should update h
   const response = await request(app).patch("/habit/34").send({
     name: "test test name",
   });
-  const expectedBody = {
-    success: true,
-    message: `Update habit name,description,userId for habit id  34`,
-    data: expect.arrayContaining([
-      expect.objectContaining({
-        id: expect.any(Number),
-        name: expect.any(String),
-      }),
-    ]),
-  };
-
   expect(response.statusCode).toBe(200);
   //expect(response.headers["content-type"]).toMatch(/json/);
   //expect(response.body).toEqual(expectedBody);
