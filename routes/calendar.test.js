@@ -1,18 +1,18 @@
 import app from "../app.js";
-import require from "supertest";
+import request from "supertest";
 import { describe, test, expect } from "@jest/globals";
 
 // get habit item by id
 describe(`get habit item by habit_id`, () => {
   test(`getAllByID`, async () => {
-    const res = await require(app).get("/calendar/3");
+    const res = await request(app).get("/calendar/4");
     expect(res.statusCode).toBe(200);
   });
 
   test(`checks if response body is {
     success: true, payload: array
   }`, async () => {
-    const res = await require(app).get("/calendar/3");
+    const res = await request(app).get("/calendar/4");
     expect(res.body).toEqual({
       success: true,
       payload: expect.any(Array),
@@ -20,7 +20,7 @@ describe(`get habit item by habit_id`, () => {
   });
 
   test(`check if every item in the payload array is { date: any string, status: any string, name: any string, userid: any string, id: any number}`, async () => {
-    const res = await require(app).get("/calendar/3");
+    const res = await request(app).get("/calendar/4");
     expect(res.body.payload).toEqual(
       expect.arrayContaining([
         {
@@ -38,14 +38,14 @@ describe(`get habit item by habit_id`, () => {
 // get habit item by id and date
 describe(`get habit item by habit_id and date`, () => {
   test(`getAllByIDAndDate`, async () => {
-    const res = await require(app).get("/calendar/5?date=20220802");
+    const res = await request(app).get("/calendar/5?date=20220802");
     expect(res.statusCode).toBe(200);
   });
 
   test(`checks if response body is {
     success: true, payload: array
   }`, async () => {
-    const res = await require(app).get("/calendar/5?date=20220802");
+    const res = await request(app).get("/calendar/5?date=20220802");
     expect(res.body).toEqual({
       success: true,
       payload: expect.any(Array),
@@ -53,7 +53,7 @@ describe(`get habit item by habit_id and date`, () => {
   });
 
   test(`check if every item in the payload array is { date: any string, status: any string, name: any string, userid: any string, id: any number}`, async () => {
-    const res = await require(app).get("/calendar/5?date=20220802");
+    const res = await request(app).get("/calendar/5?date=20220802");
     expect(res.body.payload).toEqual(
       expect.arrayContaining([
         {
@@ -71,7 +71,7 @@ describe(`get habit item by habit_id and date`, () => {
 // post new calendar entry
 describe(`post new calendar entry`, () => {
   test(`Add habit_id, date and status to database`, async () => {
-    const res = await require(app).post("/calendar").send({
+    const res = await request(app).post("/calendar").send({
       habit_id: 2,
       date: "20220809",
       status: "complete",
@@ -80,7 +80,7 @@ describe(`post new calendar entry`, () => {
   });
 
   test(`checks if the input is of type json`, async () => {
-    const res = await require(app).post("/calendar").send({
+    const res = await request(app).post("/calendar").send({
       habit_id: 2,
       date: "20220809",
       status: "complete",
@@ -94,14 +94,14 @@ describe(`post new calendar entry`, () => {
 // patch
 describe(`update status from incomplete to either complete, miss or fail`, () => {
   test(`updateStatus`, async () => {
-    const res = await require(app).patch("/calendar/6?date=20220804").send({
+    const res = await request(app).patch("/calendar/6?date=20220804").send({
       status: "complete",
     });
     expect(res.statusCode).toBe(202);
   });
 
   test(`checks if response body is {success: true, payload: array)`, async () => {
-    const res = await require(app).patch("/calendar/6?date=20220804").send({
+    const res = await request(app).patch("/calendar/6?date=20220804").send({
       status: "complete",
     });
     expect(res.body).toEqual({
@@ -111,7 +111,7 @@ describe(`update status from incomplete to either complete, miss or fail`, () =>
   });
 
   test(`check if every item in the payload array is { id: any number, date: any string, created_at: any string, updated_at: any string, status: any string}`, async () => {
-    const res = await require(app).patch("/calendar/6?date=20220804").send({
+    const res = await request(app).patch("/calendar/6?date=20220804").send({
       status: "complete",
     });
     expect(res.body.payload).toEqual(
@@ -131,12 +131,12 @@ describe(`update status from incomplete to either complete, miss or fail`, () =>
 // delete
 describe(`Delete a calendar entry by date`, () => {
   test(`Delete a calendar entry`, async () => {
-    const res = await require(app).delete("/calendar/6?date=20220802");
+    const res = await request(app).delete("/calendar/6?date=20220802");
     expect(res.statusCode).toBe(200);
   });
 
   test(`checks if response body is {success: true}`, async () => {
-    const res = await require(app).delete("/calendar/6?date=20220802");
+    const res = await request(app).delete("/calendar/6?date=20220802");
     expect(res.body).toEqual({
       success: true,
       payload: expect.any(Array),
@@ -146,12 +146,12 @@ describe(`Delete a calendar entry by date`, () => {
 
 describe(`delete all calendar entries for a habit`, () => {
   test(`delete all calendar entries`, async () => {
-    const res = await require(app).delete("/calendar/2");
+    const res = await request(app).delete("/calendar/2");
     expect(res.statusCode).toBe(200);
   });
 
   test(`checks if response body is {success: true}`, async () => {
-    const res = await require(app).delete("/calendar/3");
+    const res = await request(app).delete("/calendar/3");
     expect(res.body).toEqual({
       success: true,
       payload: expect.any(Array),
