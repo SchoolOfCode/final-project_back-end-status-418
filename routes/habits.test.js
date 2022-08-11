@@ -92,26 +92,17 @@ import { describe, test, expect } from "@jest/globals";
 //test for convertedData for put route
 
 //test for PUT by id
-/*test(`Sending a new habits information for a specific id to put route, should update exisiting habit entry and confirm`, async () => {
-  const id = 34;
-  const response = await request(app)
-    .put("/habits/34")
-    .send({
-      name: expect.any(String),
-      description: expect.any(String),
-      userId: expect.any(String),
-      everyday: expect.any(Boolean),
-      frequency: {
-        fr_reps: null,
-        fr_interval: null,
-      },
-    });
+test(`Sending a new habits information for a specific id to put route, should update exisiting habit entry and confirm`, async () => {
+  const response = await request(app).put("/habits/13").send({
+    name: "swim",
+    description: "start swimming",
+    userId: "sam",
+  });
   const expectedBody = {
     success: true,
-    message: "Update habit id 34",
     data: expect.arrayContaining([
       expect.objectContaining({
-        id: 34,
+        id: expect.any(Number),
         name: expect.any(String),
         description: expect.any(String),
         userId: expect.any(String),
@@ -124,10 +115,10 @@ import { describe, test, expect } from "@jest/globals";
     ]),
   };
 
-  //expect(response.statusCode).toBe(200);
-  //expect(response.headers["content-type"]).toMatch(/json/);
+  expect(response.statusCode).toBe(200);
+  expect(response.headers["content-type"]).toMatch(/json/);
   expect(response.body).toEqual(expectedBody);
-});*/
+});
 
 //test for PATCH habit by id- for name and description
 test(`Sending a new habit name for a specific id to patch route, should update habits name only`, async () => {
@@ -155,23 +146,15 @@ test(`Sending a new habit name for a specific id to patch route, should update h
   });
 });
 
-/*describe("Patch route", () => {
-  test("Updating habit name by sending /habits/id to patch route", async () => {
-    let convertedData = [
-      {
-        id: 3,
-        name: "test name 1",
-      },
-    ];
-    const res = await request(app).patch("/habits/3");
-    expect(res.statusCode).toEqual(200);
-    expect(res.body).toEqual({
-      success: true,
-      message: `Update habit ${convertedData.name} for habit id  ${convertedData.id}`,
-      data: convertedData,
-    });
-  });
-});
+// describe(`update description for habit by id`, () => {
+//   test(`update description`, async () => {
+//     const res = await request(app)
+//       .patch("/habits/35")
+//       .send({ description: "run daily" });
+//     expect(res.statusCode).toBe(200);
+//     expect(res.headdr)
+//   });
+// });
 
 //test for DELETE habit by id
 /*describe("Delete route", () => {
