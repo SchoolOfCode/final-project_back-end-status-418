@@ -78,7 +78,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const result = await fullUpdateofHabit(Number(req.params.id), req.body);
   const convertedData = convertHabitData(result);
-  console.log(convertedData);
+  // console.log(convertedData);
   const payload = {
     success: true,
     //message: `Update habit id ${convertedData[0].id}`,

@@ -32,7 +32,6 @@ export async function changeUsername(newUsername, id) {
 }
 
 // delete user
-
 export async function deleteUser(id) {
   const res = await query(`DELETE FROM users WHERE user_id = $1`, [id]);
   return res.rows;
