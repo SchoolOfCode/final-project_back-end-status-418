@@ -3,7 +3,7 @@ import app from "../app.js";
 import { describe, test, expect } from "@jest/globals";
 
 //GET all habits
-/*test(`if get request is sent to /habits, all habits should be returned`, async () => {
+test(`if get request is sent to /habits, all habits should be returned`, async () => {
   const response = await request(app).get("/habits");
   const expectedBody = {
     message: "All data on habits table",
@@ -25,10 +25,10 @@ import { describe, test, expect } from "@jest/globals";
   expect(response.statusCode).toBe(200);
   expect(response.headers["content-type"]).toMatch(/json/);
   expect(response.body).toEqual(expectedBody);
-});*/
+});
 
 //test for specific habits using habit id
-/*test(`if get request is sent to /habits/2, habits with id 2 should be returned`, async () => {
+test(`if get request is sent to /habits/2, habits with id 2 should be returned`, async () => {
   const id = 2;
   const response = await request(app).get("/habits/2");
   const expectedBody = {
@@ -51,21 +51,17 @@ import { describe, test, expect } from "@jest/globals";
   expect(response.statusCode).toBe(200);
   expect(response.headers["content-type"]).toMatch(/json/);
   expect(response.body).toEqual(expectedBody);
-});*/
+});
 
 //test for POST new habits
-/*test(`if new habit data sent to /habits, should send message and return success`, async () => {
+test(`if new habit data sent to /habits, should send message and return success`, async () => {
   const name = "test name";
   const userId = "test userId";
-  const response = await request(app)
-    .post("/habits")
-    .send({
-      name: "test name",
-      description: "test description",
-      userId: "test userId",
-      everyday: true,
-      frequency: { fr_reps: null, fr_interval: null },
-    });
+  const response = await request(app).post("/habits").send({
+    name: "test name",
+    description: "test description",
+    userId: "test userId",
+  });
 
   const expectedBody = {
     success: true,
@@ -87,7 +83,7 @@ import { describe, test, expect } from "@jest/globals";
   expect(response.statusCode).toBe(201);
   expect(response.headers["content-type"]).toMatch(/json/);
   expect(response.body).toEqual(expectedBody);
-});*/
+});
 
 //test for convertedData for put route
 
@@ -157,17 +153,14 @@ test(`Sending a new habit name for a specific id to patch route, should update h
 // });
 
 //test for DELETE habit by id
-/*describe("Delete route", () => {
+describe("Delete route", () => {
   test("Sending a habit id to delete route, should delete habit entry and confirm", async () => {
-    const res = await request(app).delete("/habits/34");
+    const res = await request(app).delete("/habits/51");
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
       success: true,
-      message: "Successfully deleted habit with id 34",
-      data: [],
+      message: "Successfully deleted habit with id 51",
+      data: expect.any(Array),
     });
   });
 });
-expect(response.headers["content-type"]).toMatch(/json/);*/
-
-//PUT, PATCH AND DELETE ALL GIVE OUT 404 STATUS CODE RATHER THAN 200 OR 201
