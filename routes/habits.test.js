@@ -142,15 +142,32 @@ test(`Sending a new habit name for a specific id to patch route, should update h
   });
 });
 
-// describe(`update description for habit by id`, () => {
-//   test(`update description`, async () => {
-//     const res = await request(app)
-//       .patch("/habits/35")
-//       .send({ description: "run daily" });
-//     expect(res.statusCode).toBe(200);
-//     expect(res.headdr)
-//   });
-// });
+describe(`update description for habit by id`, () => {
+  test(`update description`, async () => {
+    const res = await request(app)
+      .patch("/habits/13")
+      .send({ description: "start swimming daily." });
+    expect(res.statusCode).toBe(200);
+    expect(res.headers["content-type"]).toMatch(/json/);
+    expect(res.body).toEqual({
+      success: true,
+      message: "Update habit description for habit id  13",
+      data: expect.arrayContaining([
+        {
+          id: expect.any(Number),
+          name: expect.any(String),
+          description: expect.any(String),
+          userId: expect.any(String),
+          everyday: true,
+          frequency: {
+            fr_reps: null,
+            fr_interval: null,
+          },
+        },
+      ]),
+    });
+  });
+});
 
 //test for DELETE habit by id
 describe("Delete route", () => {
