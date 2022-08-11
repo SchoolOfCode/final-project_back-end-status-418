@@ -131,12 +131,28 @@ import { describe, test, expect } from "@jest/globals";
 
 //test for PATCH habit by id- for name and description
 test(`Sending a new habit name for a specific id to patch route, should update habits name only`, async () => {
-  const response = await request(app).patch("/habit/34").send({
+  const response = await request(app).patch("/habits/35").send({
     name: "test test name",
   });
   expect(response.statusCode).toBe(200);
-  //expect(response.headers["content-type"]).toMatch(/json/);
-  //expect(response.body).toEqual(expectedBody);
+  expect(response.headers["content-type"]).toMatch(/json/);
+  expect(response.body).toEqual({
+    success: true,
+    message: "Update habit name for habit id  35",
+    data: expect.arrayContaining([
+      {
+        id: expect.any(Number),
+        name: expect.any(String),
+        description: expect.any(String),
+        userId: expect.any(String),
+        everyday: true,
+        frequency: {
+          fr_reps: null,
+          fr_interval: null,
+        },
+      },
+    ]),
+  });
 });
 
 /*describe("Patch route", () => {
