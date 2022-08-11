@@ -81,7 +81,7 @@ router.put("/:id", async (req, res) => {
   console.log(convertedData);
   const payload = {
     success: true,
-    // message: `Update habit id ${convertedData[0].id}`,
+    //message: `Update habit id ${convertedData[0].id}`,
     data: convertedData,
   };
   return res.json(payload);
