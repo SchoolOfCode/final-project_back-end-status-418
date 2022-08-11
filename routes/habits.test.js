@@ -25,7 +25,7 @@ test(`if get request is sent to /habits, all habits should be returned`, async (
   expect(response.statusCode).toBe(200);
   expect(response.headers["content-type"]).toMatch(/json/);
   expect(response.body).toEqual(expectedBody);
-});
+}, 50000);
 
 //test for specific habits using habit id
 test(`if get request is sent to /habits/2, habits with id 2 should be returned`, async () => {
@@ -51,7 +51,7 @@ test(`if get request is sent to /habits/2, habits with id 2 should be returned`,
   expect(response.statusCode).toBe(200);
   expect(response.headers["content-type"]).toMatch(/json/);
   expect(response.body).toEqual(expectedBody);
-});
+}, 50000);
 
 //test for POST new habits
 test(`if new habit data sent to /habits, should send message and return success`, async () => {
@@ -83,7 +83,7 @@ test(`if new habit data sent to /habits, should send message and return success`
   expect(response.statusCode).toBe(201);
   expect(response.headers["content-type"]).toMatch(/json/);
   expect(response.body).toEqual(expectedBody);
-});
+}, 50000);
 
 //test for convertedData for put route
 
@@ -114,7 +114,7 @@ test(`Sending a new habits information for a specific id to put route, should up
   expect(response.statusCode).toBe(200);
   expect(response.headers["content-type"]).toMatch(/json/);
   expect(response.body).toEqual(expectedBody);
-});
+}, 50000);
 
 //test for PATCH habit by id- for name and description
 test(`Sending a new habit name for a specific id to patch route, should update habits name only`, async () => {
@@ -140,7 +140,7 @@ test(`Sending a new habit name for a specific id to patch route, should update h
       },
     ]),
   });
-});
+}, 50000);
 
 describe(`update description for habit by id`, () => {
   test(`update description`, async () => {
@@ -166,7 +166,7 @@ describe(`update description for habit by id`, () => {
         },
       ]),
     });
-  });
+  }, 50000);
 });
 
 //test for DELETE habit by id
@@ -179,5 +179,5 @@ describe("Delete route", () => {
       message: "Successfully deleted habit with id 51",
       data: expect.any(Array),
     });
-  });
+  }, 50000);
 });
