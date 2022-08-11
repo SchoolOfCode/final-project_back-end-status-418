@@ -41,4 +41,6 @@ describe(`add new username and user_id from Auth0 onto users table`, () => {
       .send({ user_id: "Auth0|GEGHEYRH463256", username: "sam123" });
     expect(res.statusCode).toBe(202);
   }, 50000);
+
+  test(``);
 });
