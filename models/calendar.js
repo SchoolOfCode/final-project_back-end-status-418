@@ -2,7 +2,8 @@ import { query } from "../db/index.js";
 
 export async function getAllByID(id) {
   const res = await query(
-    `SELECT * FROM calendar INNER JOIN habits
+    `SELECT calendar.date, calendar.status, habits.name, habits.userid, habits.id 
+    FROM calendar INNER JOIN habits
     ON calendar.habit_id = habits.id 
     WHERE habit_id = $1`,
     [id]
@@ -12,18 +13,19 @@ export async function getAllByID(id) {
 
 export async function getAllByIDAndDate(id, date) {
   const res = await query(
-    `SELECT * FROM calendar INNER JOIN habits
-        ON calendar.habit_id = habits.id
-        WHERE habit_id = $1 AND date = $2`,
+    `SELECT calendar.date, calendar.status, habits.name, habits.userid, habits.id
+     FROM calendar INNER JOIN habits
+      ON calendar.habit_id = habits.id
+      WHERE habit_id = $1 AND date = $2`,
     [id, date]
   );
-  return res.rows[0];
+  return res.rows;
 }
 
-export async function changeStatus(id, newStatus) {
+export async function changeStatus(id, newStatus, date) {
   const res = await query(
-    `UPDATE calendar SET status = $1, updated_at = NOW() WHERE habit_id = $2 RETURNING *`,
-    [newStatus, id]
+    `UPDATE calendar SET status = $1, updated_at = NOW() WHERE habit_id = $2 AND date = $3 RETURNING *`,
+    [newStatus, id, date]
   );
   return res.rows;
 }
@@ -31,7 +33,7 @@ export async function changeStatus(id, newStatus) {
 export async function newCalendarEntry(habitItem) {
   const { habit_id, date, status } = habitItem;
   const res = await query(
-    `INSERT INTO calendar(habit_id, date, status) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING`,
+    `INSERT INTO calendar(habit_id, date, status) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING RETURNING *`,
     [habit_id, date, status]
   );
   return res.rows;

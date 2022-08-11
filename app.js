@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", function (req, res) {
-  res.send("Welcome to Status 418’s Rootine back end");
+	res.send("Welcome to Status 418’s Rootine back end");
 });
 
 app.use("/user", userRouter);
@@ -24,9 +24,9 @@ app.use("/habits", habitsRouter);
 app.use("/calendar", calendarRouter);
 
 if (process.env.NODE_ENV != "test") {
-  app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-  });
+	app.listen(port, () => {
+		console.log(`Listening on port ${port}`);
+	});
 }
 
 export default app;

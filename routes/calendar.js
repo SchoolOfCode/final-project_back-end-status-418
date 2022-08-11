@@ -26,20 +26,29 @@ calendarRouter.get("/:id", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ success: false, message: "Server Unavailable" });
+    res
+      .status(404)
+      .send({ success: false, message: "ID and/or date not found" });
   }
 });
 
 // update status
 calendarRouter.patch("/:id", async (req, res) => {
   try {
-    res.status(202).json({
-      success: true,
-      payload: await changeStatus(Number(req.params.id), req.body.status),
-    });
+    if (req.query.date) {
+      res.status(202).json({
+        success: true,
+        payload: await changeStatus(
+          Number(req.params.id),
+          req.body.status,
+          req.query.date
+        ),
+      });
+      return;
+    }
   } catch (err) {
     console.log(err);
-    res.status(400).send({ success: false });
+    res.status(500).send({ success: false, message: "Server Unavailable" });
   }
 });
 
@@ -47,11 +56,11 @@ calendarRouter.patch("/:id", async (req, res) => {
 calendarRouter.post("/", async (req, res) => {
   try {
     res
-      .status(202)
+      .status(201)
       .json({ success: true, payload: await newCalendarEntry(req.body) });
   } catch (err) {
     console.log(err);
-    res.status(400).send({ success: false });
+    res.status(500).send({ success: false, message: "Server Unavailable" });
   }
 });
 
