@@ -88,3 +88,9 @@ describe(`update username by id`, () => {
 });
 
 // delete user
+describe(`delete user by id`, () => {
+  test(`delete user`, async () => {
+    const res = await request(app).delete("/user/3");
+    expect(res.statusCode).toBe(200);
+  });
+});
