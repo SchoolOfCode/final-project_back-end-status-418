@@ -62,7 +62,7 @@ describe(`update username by id`, () => {
     expect(res.statusCode).toBe(202);
   });
 
-  test(`check if response body is {success: true, payload: any array}`, async () => {
+  test(`check if response body is {success: true}`, async () => {
     const res = await request(app)
       .patch("/user/1")
       .send({ username: "roberto123" });
@@ -93,4 +93,12 @@ describe(`delete user by id`, () => {
     const res = await request(app).delete("/user/3");
     expect(res.statusCode).toBe(200);
   });
+
+  test(`checks if response body is {success: true}`, async () => {
+    const res = await request(app).delete("/user/3");
+    expect(res.body).toEqual({
+      success: true,
+      payload: expect.any(Array),
+    });
+  }, 50000);
 });
