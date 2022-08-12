@@ -54,5 +54,13 @@ describe(`add new username and user_id from Auth0 onto users table`, () => {
 });
 
 // change username
+describe(`update username by id`, () => {
+  test(`update username`, async () => {
+    const res = await request(app)
+      .patch("/user/1")
+      .send({ username: "roberto123" });
+    expect(res.statusCode).toBe(202);
+  });
+});
 
 // delete user
