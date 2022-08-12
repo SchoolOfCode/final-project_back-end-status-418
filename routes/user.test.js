@@ -18,7 +18,7 @@ test(`if /user is sent to get route should return all the users in the database`
   expect(response.body).toEqual(expectedBody);
 }, 50000);
 
-test(`if /user/user_id is sent it should return all the details for that`, async () => {
+test(`if /user/user_id is sent it should return all the details for that user`, async () => {
   const response = await request(app).get("/user/1");
   const expectedBody = {
     success: true,
