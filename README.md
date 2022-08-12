@@ -162,3 +162,7 @@ Routes/calendar.test.js:
 4. To test if the patch request updates the status from incomplete to either complete, miss or fail by id an date query. The test will check to see if the response.body includes the correct properties and primitive data type in the calendar object. The test will also check to see if the request body format is JSON. A successful patch request test will return a 202 status code.
 
 5. To test if the delete request deletes all calendar enteries for a habit by habit id.The test will check to see if the response.body includes the correct properties and primitive data type in the calendar object. The test will also check to see if the request body format is JSON. A successful delete request test will return a 200 status code.
+
+## Authors
+
+- [Idman Abshir](https://github.com/idman01)
