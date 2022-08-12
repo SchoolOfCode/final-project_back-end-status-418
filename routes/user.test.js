@@ -71,6 +71,20 @@ describe(`update username by id`, () => {
       payload: expect.any(Array),
     });
   }, 50000);
+
+  test(`check if every item in the payload array is { user_id: any string, username: any string}`, async () => {
+    const res = await request(app)
+      .patch("/user/1")
+      .send({ username: "roberto123" });
+    expect(res.body.payload).toEqual(
+      expect.arrayContaining([
+        {
+          user_id: expect.any(String),
+          username: expect.any(String),
+        },
+      ])
+    );
+  }, 50000);
 });
 
 // delete user
