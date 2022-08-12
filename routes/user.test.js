@@ -61,6 +61,16 @@ describe(`update username by id`, () => {
       .send({ username: "roberto123" });
     expect(res.statusCode).toBe(202);
   });
+
+  test(`check if response body is {success: true, payload: any array}`, async () => {
+    const res = await request(app)
+      .patch("/user/1")
+      .send({ username: "roberto123" });
+    expect(res.body).toEqual({
+      success: true,
+      payload: expect.any(Array),
+    });
+  }, 50000);
 });
 
 // delete user
