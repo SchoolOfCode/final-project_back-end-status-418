@@ -166,3 +166,4 @@ Routes/calendar.test.js:
 ## Authors
 
 - [Idman Abshir](https://github.com/idman01)
+- [Samantha Wu](https://github.com/syywu)
