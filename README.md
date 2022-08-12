@@ -167,3 +167,7 @@ Routes/calendar.test.js:
 
 - [Idman Abshir](https://github.com/idman01)
 - [Samantha Wu](https://github.com/syywu)
+- [Robert Angelited](https://github.com/m4tchka)
+- [Bushra Fatima](https://github.com/BushraFatimaBF)
+- [Mordecai Oladimeji](https://github.com/MordecaiO)
+- [Hannah McFarlane](https://github.com/hcmcfarlane)
