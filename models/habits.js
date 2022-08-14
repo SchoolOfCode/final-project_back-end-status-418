@@ -3,7 +3,7 @@ import { query } from "../db/index.js";
 /** Return all habits in habits table */
 export async function getAllHabits() {
   const res = await query(
-    "SELECT * FROM habits INNER JOIN users ON users.user_id = userId"
+    "SELECT * FROM habits INNER JOIN users ON users.user_id = userId ORDER BY created_at"
   );
   return res.rows;
 }

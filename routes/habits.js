@@ -106,7 +106,7 @@ router.patch("/:id", async function (req, res) {
   console.log(convertedData);
   const payload = {
     success: true,
-    message: `Update habit ${keys} for habit id  ${convertedData[0].id}`,
+    // message: `Update habit ${keys} for habit id  ${convertedData[0].id}`,
     data: convertedData,
   };
   return res.json(payload);
