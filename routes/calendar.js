@@ -1,5 +1,4 @@
 import express from "express";
-import { CommandCompleteMessage } from "pg-protocol/dist/messages.js";
 const calendarRouter = express.Router();
 
 import {
