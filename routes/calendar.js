@@ -44,12 +44,12 @@ calendarRouter.get("/:id", async (req, res) => {
       }
       console.log(streak);
       res.json({ payload: streak });
-    } else {
-      res.status(200).json({
-        success: true,
-        payload: await getAllByID(Number(req.params.id)),
-      });
+      return;
     }
+    res.status(200).json({
+      success: true,
+      payload: await getAllByID(Number(req.params.id)),
+    });
   } catch (err) {
     console.log(err);
     res
