@@ -20,7 +20,7 @@ export async function getHabitById(id) {
 /** Return all habits by userId. Expects a string */
 export async function getHabitsByUserId(user) {
   const res = await query(
-    "SELECT * FROM habits INNER JOIN users ON users.user_id = userId WHERE Userid = $1",
+    "SELECT * FROM habits INNER JOIN users ON users.user_id = userId WHERE Userid = $1 ORDER BY created_at",
     [user]
   );
   return res.rows;
