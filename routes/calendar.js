@@ -26,7 +26,7 @@ calendarRouter.get("/:id", async (req, res) => {
         req.query.userId
       );
       let count = 1;
-      let streak = count - 4;
+      let streaks = count - 4;
       for (let i = 0; i < results.length - 1; i++) {
         if (
           Number(results[i].date.charAt(6) + results[i].date.charAt(7)) + 1 ===
@@ -36,14 +36,13 @@ calendarRouter.get("/:id", async (req, res) => {
           results[i].status &&
           results[i + 1].status === "complete"
         ) {
-          console.log("next day");
           count++;
-          streak++;
+          streaks++;
         }
       }
-      console.log(streak);
       console.log(count);
-      res.json({ payload: streak });
+      console.log(streaks);
+      res.json({ payload: streaks });
       return;
     }
     res.status(200).json({
