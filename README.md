@@ -97,7 +97,8 @@ You can use Heroku credentials in the .env file to link to external database.
 
 ## Tests - what are they testing for, i.e. what can you be sure will be OK if the tests pass
 
-Routes/user.test.js:
+<details>
+<summary>Routes/user.test.js:</summary>
 
 1. To test if the get request, to recieve all the users in the database, is successful. The test will check to see if the response.body includes the correct properties and primitive data type in the user object. The test will also check to see if the request body format is JSON. A successful get request test will return a 200 status code.
 
@@ -108,21 +109,11 @@ Routes/user.test.js:
 4. To test if the patch request will update the username of a specific user using its user_id. The test will also check to see if the request body format is JSON.A successful get request test will return a 202 status code or 500 status code if unsuccessful.
 
 5. To test if the delete request will delete a specific user using its id. A successful delete request test will return a 200 status code or 500 status code if unsuccessful.
+</details>
 
-Routes/user.test.js:
-
-1. To test if the get request, to recieve all the users in the database, is successful. The test will check to see if the response.body includes the correct properties and primitive data type in the user object. The test will also check to see if the request body format is JSON. A successful get request test will return a 200 status code.
-
-2. To test if the get request will send back a specific user object using the user_id. The test will check to see if the response.body includes the correct properties and primitive data type in the user object. The test will also check to see if the request body format is JSON. A successful get request test will return a 200 status code.
-
-3. To test if the post request will create a new user from Auth0. The test will check to see if the response.body includes the correct properties and primitive data type in the user object. The test will also check to see if the request body format is JSON. A successful get request test will return a 202 status code or 500 status code if unsuccessful.
-
-4. To test if the patch request will update the username of a specific user using its user_id. The test will also check to see if the request body format is JSON.A successful get request test will return a 202 status code or 500 status code if unsuccessful.
-
-5. To test if the delete request will delete a specific user using its id. A successful delete request test will return a 200 status code or 500 status code if unsuccessful.
-
-Routes/user.test.js:
-
+<details>
+<summary>Routes/user.test.js:</summary>
+ 
 1. To test if the get request retrieves all users successful. The test will check to see if the response.body includes the correct properties and primitive data type in the user object. The test will also check to see if the request body format is JSON. A successful get request test will return a 200 status code.
 
 2. To test if the get request will send back a specific user by the user_id. The test will check to see if the response.body includes the correct properties and primitive data type in the user object. The test will also check to see if the request body format is JSON. A successful get request test will return a 200 status code.
@@ -132,8 +123,10 @@ Routes/user.test.js:
 4. To test if the patch request will update the username of a specific user by the user_id. The test will also check to see if the request body format is JSON. A successful patch request test will return a 202 status code.
 
 5. To test if the delete request will delete a specific user by the user_id. A successful delete request test will return a 200 status code or 500 status code if unsuccessful.
+</details>
 
-Routes/habits.test.js:
+<details>
+<summary>Routes/habits.test.js:</summary>
 
 1. To test if the get request retrieves all the habits successful. The test will check to see if the response.body includes the correct properties and primitive data type in the habit object. The test will also check to see if the request body format is JSON. A successful get request test will return a 200 status code.
 
@@ -150,8 +143,10 @@ Routes/habits.test.js:
 7. To test if the patch request will update an exisiting habit description by the habit id. The test will also check to see if the request body format is JSON. A successful patch request test will return a 202 status code.
 
 8. To test if the delete request will delete a specific habit by habit id. A successful delete request test will return a 200 status code.
+</details>
 
-Routes/calendar.test.js:
+<details>
+<summary>Routes/calendar.test.js:</summary>
 
 1. To test if the get request retrieves all habit items by habit id successfully. The test will also check to see if the request body format is JSON. It will also check to see if the response.body includes the correct properties and primitive data type in the calendar object. A successful get request test will return a 200 status code.
 
@@ -162,6 +157,7 @@ Routes/calendar.test.js:
 4. To test if the patch request updates the status from incomplete to either complete, miss or fail by id an date query. The test will check to see if the response.body includes the correct properties and primitive data type in the calendar object. The test will also check to see if the request body format is JSON. A successful patch request test will return a 202 status code.
 
 5. To test if the delete request deletes all calendar enteries for a habit by habit id.The test will check to see if the response.body includes the correct properties and primitive data type in the calendar object. The test will also check to see if the request body format is JSON. A successful delete request test will return a 200 status code.
+</details>
 
 ## Authors
 
