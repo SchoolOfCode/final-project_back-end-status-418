@@ -26,7 +26,7 @@ calendarRouter.get("/:id", async (req, res) => {
         Number(req.params.id),
         req.query.userId
       );
-      let count = 0;
+      let count = 1;
       for (let i = 0; i < results.length - 1; i++) {
         if (
           Number(results[i].date.charAt(6) + results[i].date.charAt(7)) + 1 ===
