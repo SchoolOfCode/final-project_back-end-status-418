@@ -26,6 +26,7 @@ calendarRouter.get("/:id", async (req, res) => {
         Number(req.params.id),
         req.query.userId
       );
+      // Streak finding logic below
       let count = 1;
       for (let i = 0; i < results.length - 1; i++) {
         if (
