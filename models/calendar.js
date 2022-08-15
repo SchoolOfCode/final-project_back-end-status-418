@@ -22,6 +22,18 @@ export async function getAllByIDAndDate(id, date) {
   return res.rows;
 }
 
+export async function getByIDAndUserID(id, userID) {
+  const res = await query(
+    `
+  SELECT calendar.date, calendar.status, habits.name, habits.userid, habits.id
+  FROM calendar INNER JOIN habits
+  ON calendar.habit_id = habits.id
+  WHERE habit_id = $1 AND userId = $2 ORDER BY date`,
+    [id, userID]
+  );
+  return res.rows;
+}
+
 export async function changeStatus(id, newStatus, date) {
   const res = await query(
     `UPDATE calendar SET status = $1, updated_at = NOW() WHERE habit_id = $2 AND date = $3 RETURNING *`,

@@ -8,6 +8,7 @@ import {
   newCalendarEntry,
   deleteCalendarEntry,
   deleteAllCalendarEntriesByID,
+  getByIDAndUserID,
 } from "../models/calendar.js";
 
 // get habit by id and date
@@ -18,6 +19,27 @@ calendarRouter.get("/:id", async (req, res) => {
         success: true,
         payload: await getAllByIDAndDate(Number(req.params.id), req.query.date),
       });
+    }
+    if (req.query.userId) {
+      const results = await getByIDAndUserID(
+        Number(req.params.id),
+        req.query.userId
+      );
+      let count = 0;
+      for (let i = 0; i < results.length - 1; i++) {
+        if (
+          Number(results[i].date.charAt(6) + results[i].date.charAt(7)) + 1 ===
+            Number(
+              results[i + 1].date.charAt(6) + results[i + 1].date.charAt(7)
+            ) &&
+          results[i].status &&
+          results[i + 1].status === "complete"
+        ) {
+          count++;
+        }
+      }
+      console.log(count);
+      res.json({ payload: count });
       return;
     }
     res.status(200).json({
