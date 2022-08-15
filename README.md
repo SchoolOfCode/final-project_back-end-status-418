@@ -164,14 +164,6 @@ You can use Heroku credentials in the .env file to link to external database.
 - [Bushra Fatima](https://github.com/BushraFatimaBF)
 - [Hannah McFarlane](https://github.com/hcmcfarlane)
 - [Idman Abshir](https://github.com/idman01)
-<<<<<<< HEAD
 - [Mordecai Oladimeji](https://github.com/MordecaiO)
-- [Robert Angelitud](https://github.com/m4tchka)
-- [Samantha Wu](https://github.com/syywu)
-=======
-- [Samantha Wu](https://github.com/syywu)
 - [Robert Angelited](https://github.com/m4tchka)
-- [Bushra Fatima](https://github.com/BushraFatimaBF)
-- [Mordecai Oladimeji](https://github.com/MordecaiO)
-- [Hannah McFarlane](https://github.com/hcmcfarlane)
->>>>>>> 2d528f101e775cc5d7fa4fcb3ad4826ff80e7fbb
+- [Samantha Wu](https://github.com/syywu)
