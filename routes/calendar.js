@@ -19,6 +19,7 @@ calendarRouter.get("/:id", async (req, res) => {
         success: true,
         payload: await getAllByIDAndDate(Number(req.params.id), req.query.date),
       });
+      return;
     }
     if (req.query.userId) {
       const results = await getByIDAndUserID(
