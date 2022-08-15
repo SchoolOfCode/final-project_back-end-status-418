@@ -165,4 +165,9 @@ Routes/calendar.test.js:
 
 ## Authors
 
+- [Bushra Fatima](https://github.com/BushraFatimaBF)
+- [Hannah McFarlane](https://github.com/hcmcfarlane)
 - [Idman Abshir](https://github.com/idman01)
+- [Mordecai Oladimeji](https://github.com/MordecaiO)
+- [Robert Angelitud](https://github.com/m4tchka)
+- [Samantha Wu](https://github.com/syywu)
