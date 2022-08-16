@@ -26,20 +26,61 @@ calendarRouter.get("/:id", async (req, res) => {
         Number(req.params.id),
         req.query.userId
       );
-      let count = 1;
+      // count the number of consecutive complete up to and include current day
+      //
+      console.log(Date.now());
+      let count = 0;
+      let streaks = 0;
+      console.log(results);
       for (let i = 0; i < results.length - 1; i++) {
+        // console.log(
+        //   "i",
+        //   Number(results[i].date.charAt(6) + results[i].date.charAt(7))
+        // );
+        console.log(
+          "i+1",
+          Number(results[i].date.charAt(6) + results[i].date.charAt(7)) + 1
+        );
+        console.log(
+          "next date",
+          Number(results[i + 1].date.charAt(6) + results[i + 1].date.charAt(7))
+        );
         if (
           Number(results[i].date.charAt(6) + results[i].date.charAt(7)) + 1 ===
             Number(
               results[i + 1].date.charAt(6) + results[i + 1].date.charAt(7)
             ) &&
-          results[i].status &&
+          results[i].status === "complete" &&
           results[i + 1].status === "complete"
         ) {
+          console.log(count);
           count++;
+          streaks++;
+        } else {
+          count = 0;
         }
       }
-      console.log(count);
+      if (count > 1) {
+        count++;
+      }
+      // if (
+      //   Number(
+      //     results[results.length - 2].date.charAt(6) +
+      //       results[results.length - 2].date.charAt(7)
+      //   ) +
+      //     1 ===
+      //     Number(
+      //       results[results.length - 1].date.charAt(6) +
+      //         results[results.length - 1].date.charAt(7)
+      //     ) &&
+      //   ((results[results.length - 2].status === "complete") ===
+      //     results[results.length - 1].status) ===
+      //     "complete"
+      // ) {
+      //   count++;
+      // }
+      console.log("final", count);
+      console.log(streaks);
       res.json({ payload: count });
       return;
     }
