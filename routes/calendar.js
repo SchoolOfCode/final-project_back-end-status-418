@@ -28,7 +28,26 @@ calendarRouter.get("/:id", async (req, res) => {
       );
       // count the number of consecutive complete up to and include current day
       //
-      console.log(Date.now());
+
+    const today = new Date();
+    const year = String(today.getFullYear())
+    let month = ""; 
+    if (today.getMonth() + 1 < 9) {
+    month = "0" + String(today.getMonth() + 1)
+    } else {
+        month = String(today.getMonth() + 1)
+    }
+    console.log("MONTH: ", month)
+    let day = "";
+    if (today.getDate() < 10) {
+        day = "0" + String(today.getDate())
+    } else {
+        day = String(today.getDate())
+    }
+    console.log("DAY : ", day)
+  
+    const fullDate = Number(year+month+day)
+
       let count = 0;
       let streaks = 0;
       console.log(results);
