@@ -26,36 +26,40 @@ calendarRouter.get("/:id", async (req, res) => {
         Number(req.params.id),
         req.query.userId
       );
+
+      //get current as a number in a right format
+      const today = new Date();
+      console.log(today);
+      const todayMS = Date.now();
+      console.log(Math.floor(todayMS / 1000 / 60 / 24));
+      const year = String(today.getFullYear());
+      let month = "";
+      if (today.getMonth() + 1 < 9) {
+        month = "0" + String(today.getMonth() + 1);
+      } else {
+        month = String(today.getMonth() + 1);
+      }
+      let day = "";
+      if (today.getDate() < 10) {
+        day = "0" + String(today.getDate());
+      } else {
+        day = String(today.getDate());
+      }
+      const fullDate = year + month + day;
+
       // count the number of consecutive complete up to and include current day
-      //
-
-    const today = new Date();
-    const year = String(today.getFullYear())
-    let month = ""; 
-    if (today.getMonth() + 1 < 9) {
-    month = "0" + String(today.getMonth() + 1)
-    } else {
-        month = String(today.getMonth() + 1)
-    }
-    console.log("MONTH: ", month)
-    let day = "";
-    if (today.getDate() < 10) {
-        day = "0" + String(today.getDate())
-    } else {
-        day = String(today.getDate())
-    }
-    console.log("DAY : ", day)
-  
-    const fullDate = Number(year+month+day)
-
+      // compare fullDate against results.length-1
+      // if fullDate !== results.length-1 - streak = 0
+      // if it is then check status-
+      // if complete count++
+      // check previous day is not consecutive return count
+      // else check status = complete count++
+      // if skip or incomplete - count stays the same
+      // if miss - count = 0
       let count = 0;
       let streaks = 0;
       console.log(results);
       for (let i = 0; i < results.length - 1; i++) {
-        // console.log(
-        //   "i",
-        //   Number(results[i].date.charAt(6) + results[i].date.charAt(7))
-        // );
         console.log(
           "i+1",
           Number(results[i].date.charAt(6) + results[i].date.charAt(7)) + 1
